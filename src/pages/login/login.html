@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Login
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    Welcome to the login page
+
+    <ion-input [(ngModel)]="email"></ion-input>
+
+    <button ion-button (click)="pressMe(email, 50)">Press me</button>
+
+    <div *ngFor="let name of names">
+        {{name}}
+    </div>
+
+    <div *ngIf="flag == false">
+        {{complexObject.property1}}
+        {{complexObject.property2}}
+    </div>
+</ion-content>
