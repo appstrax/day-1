@@ -30,7 +30,27 @@ export class ProductsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProductsPage');
-    this.products = this.productService.getAllProducts();
+    //this.products = this.productService.getAllProducts();
+
+    // More scope...
+    this.productService.getAllProducts(
+      (err, data) => {
+        // TODO: Use the data
+        if (err) {
+          // Raise an alert UI
+          return;
+        }
+
+        this.products = data;
+      }
+    );
+
+    // Older way of doing it...
+    // this.productService.getAllProducts(
+    //   function (err, data) {
+    //     this.products = data;
+    //   }
+    // );
   }
 
   navigateToProduct(product: Product) {
