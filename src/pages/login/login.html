@@ -8,18 +8,17 @@
 
 <ion-content padding>
 
-    Welcome to the login page
-
     <ion-input [(ngModel)]="email"></ion-input>
+    <ion-input [(ngModel)]="password"></ion-input>
 
-    <button ion-button (click)="pressMe(email, 50)">Press me</button>
+    <button ion-button (click)="login()">Login</button>
 
-    <div *ngFor="let name of names">
+    <!-- <div *ngFor="let name of names">
         {{name}}
     </div>
 
     <div *ngIf="flag == false">
         {{complexObject.property1}}
         {{complexObject.property2}}
-    </div>
+    </div> -->
 </ion-content>

@@ -1,12 +1,12 @@
 import { Component } from "@angular/core";
 import { NavController } from "ionic-angular";
+import { Http } from "../../../node_modules/@angular/http";
 
 @Component({
   selector: "page-login",
   templateUrl: "login.html"
 })
 export class LoginPage {
-
   public email: string;
   public password: string;
 
@@ -17,16 +17,12 @@ export class LoginPage {
 
   public flag: boolean = true;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private http: Http) {
     this.email = "miki@ixperience.co.za";
 
     this.names = [];
 
-    this.names = [
-      "miki",
-      "perry",
-      "sabreena"
-    ];
+    this.names = ["miki", "perry", "sabreena"];
 
     this.names.push("Erich");
 
@@ -34,6 +30,30 @@ export class LoginPage {
       property1: "Some value",
       property2: "Another value"
     };
+  }
+
+  login() {
+    this.http
+      .post("http://localhost:3000/login", {
+        email: this.email,
+        password: this.password
+      })
+      .subscribe(
+        result => {
+          console.log(result);
+
+          var jwtResponse = result.json();
+          var token = jwtResponse.token;
+
+          localStorage.setItem("TOKEN", token);
+
+          let t = localStorage.getItem("TOKEN");
+        },
+
+        err => {
+          console.log(err);
+        }
+      );
   }
 
   pressMe(argument1: string, argument2: number) {
@@ -44,25 +64,20 @@ export class LoginPage {
   }
 
   loopOne() {
-
     for (var i = 0; i < this.names.length; i++) {
       console.log("Element: ", this.names[i]);
     }
 
     console.log("First element: ", this.names[0]);
-
   }
 
   loopTwo() {
-
-    this.names.forEach((item) => {
+    this.names.forEach(item => {
       console.log("Element: ", item);
     });
-
   }
 
-  login() {
-
+  login2() {
     var age = "1";
 
     // if (age === 1) {
